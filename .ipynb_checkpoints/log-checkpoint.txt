@@ -1,0 +1,19 @@
+dsn_prime(U-seed0) -> 0U
+MODEL   :   0U
+LEARNING:   INIT_WEIGHT     = normal(0.01)
+            WEIGHT_DECAY    = 1E-3
+            LR              = 0.0001
+            WIDTH           = 20
+            DEPTH           = 2
+            UPDATE_FREQ     = 18 MONTHS
+            MEMORY          = 24 MONTHS
+            ITERATION       = 20
+            BATCH_SIZE      = 32
+            EPSILON         = 0.9              
+            GAMMA           = 0.9                
+            LAMBDA          = 0.9  
+TRAINING :  TOKYO[2000-2010]
+            BATTERY_RESET    = FALSE
+            REWARD_FUNC      = TYPE2
+            REWARD_BROADCAST = TRUE
+TESTING :   TOKYO[2011-2018]
