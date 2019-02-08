@@ -17,7 +17,7 @@ LEARNING:   INIT_WEIGHT     = normal(0.01)
             LR              = 0.001
             UPDATE_FREQ     = 18 MONTHS
             MEMORY          = 24 MONTHS
-            ITERATION       = 20
+            ITERATION       = 50
             BATCH_SIZE      = 32
             EPSILON         = 0.5, 0.9              
             GAMMA           = 0.9                
@@ -80,9 +80,9 @@ LEARNING:   INIT_WEIGHT     = normal(0.01)
             LR              = 0.001
             UPDATE_FREQ     = 18 MONTHS
             MEMORY          = 24 MONTHS
-            ITERATION       = 20
+            ITERATION       = 50
             BATCH_SIZE      = 32
-            EPSILON         = 0.5, 0.9              
+            EPSILON         = 0.9              
             GAMMA           = 0.9                
             LAMBDA          = 0.9  
 TRAINING:   TOKYO[2000-2010]
@@ -153,9 +153,9 @@ LEARNING:   INIT_WEIGHT     = normal(0.01)
             LR              = 0.001
             UPDATE_FREQ     = 18 MONTHS
             MEMORY          = 24 MONTHS
-            ITERATION       = 20
+            ITERATION       = 50
             BATCH_SIZE      = 32
-            EPSILON         = 0.5, 0.9              
+            EPSILON         = 0.9              
             GAMMA           = 0.9                
             LAMBDA          = 0.9  
 TRAINING:   TOKYO[2000-2010]
@@ -230,9 +230,9 @@ LEARNING:   INIT_WEIGHT     = normal(0.01)
             LR              = 0.001
             UPDATE_FREQ     = 18 MONTHS
             MEMORY          = 24 MONTHS
-            ITERATION       = 20
+            ITERATION       = 50
             BATCH_SIZE      = 32
-            EPSILON         = 0.5, 0.9              
+            EPSILON         = 0.9              
             GAMMA           = 0.9                
             LAMBDA          = 0.9  
 TRAINING:   TOKYO[2000-2010]
@@ -311,9 +311,9 @@ LEARNING:   INIT_WEIGHT     = normal(0.01)
             LR              = 0.001
             UPDATE_FREQ     = 18 MONTHS
             MEMORY          = 24 MONTHS
-            ITERATION       = 20
+            ITERATION       = 50
             BATCH_SIZE      = 32
-            EPSILON         = 0.5, 0.9              
+            EPSILON         = 0.9              
             GAMMA           = 0.9                
             LAMBDA          = 0.9  
 TRAINING:   TOKYO[2000-2010]
@@ -395,9 +395,9 @@ LEARNING:   INIT_WEIGHT     = normal(0.01)
             LR              = 0.001
             UPDATE_FREQ     = 18 MONTHS
             MEMORY          = 24 MONTHS
-            ITERATION       = 20
+            ITERATION       = 50
             BATCH_SIZE      = 32
-            EPSILON         = 0.5, 0.9              
+            EPSILON         = 0.9              
             GAMMA           = 0.9                
             LAMBDA          = 0.9  
 TRAINING:   TOKYO[2000-2010]
@@ -474,9 +474,9 @@ LEARNING:   INIT_WEIGHT     = normal(0.1)
             LR              = 0.001
             UPDATE_FREQ     = 18 MONTHS
             MEMORY          = 24 MONTHS
-            ITERATION       = 20
+            ITERATION       = 50
             BATCH_SIZE      = 32
-            EPSILON         = 0.5, 0.9              
+            EPSILON         = 0.9              
             GAMMA           = 0.9                
             LAMBDA          = 0.9  
 TRAINING:   TOKYO[2000-2010]
@@ -551,9 +551,9 @@ LEARNING:   INIT_WEIGHT     = normal(0.001)
             LR              = 0.001
             UPDATE_FREQ     = 18 MONTHS
             MEMORY          = 24 MONTHS
-            ITERATION       = 20
+            ITERATION       = 50
             BATCH_SIZE      = 32
-            EPSILON         = 0.5, 0.9              
+            EPSILON         = 0.9              
             GAMMA           = 0.9                
             LAMBDA          = 0.9  
 TRAINING:   TOKYO[2000-2010]
@@ -634,9 +634,9 @@ LEARNING:   INIT_WEIGHT     = normal(0.001)
             LR              = 0.001
             UPDATE_FREQ     = 18 MONTHS
             MEMORY          = 24 MONTHS
-            ITERATION       = 20
+            ITERATION       = 50
             BATCH_SIZE      = 32
-            EPSILON         = 0.5, 0.9              
+            EPSILON         = 0.9              
             GAMMA           = 0.9                
             LAMBDA          = 0.9  
 TRAINING:   TOKYO[2000-2010]
@@ -683,9 +683,9 @@ LEARNING:   INIT_WEIGHT     = normal(0.01)
             LR              = 0.001
             UPDATE_FREQ     = 18 MONTHS
             MEMORY          = 24 MONTHS
-            ITERATION       = 20
+            ITERATION       = 50
             BATCH_SIZE      = 32
-            EPSILON         = 0.5, 0.9              
+            EPSILON         = 0.9              
             GAMMA           = 0.9                
             LAMBDA          = 0.9  
 TRAINING:   TOKYO[2000-2010]
@@ -766,9 +766,9 @@ LEARNING:   INIT_WEIGHT     = normal(0.01)
             LR              = 0.001
             UPDATE_FREQ     = 18 MONTHS
             MEMORY          = 24 MONTHS
-            ITERATION       = 20
+            ITERATION       = 50
             BATCH_SIZE      = 32
-            EPSILON         = 0.5, 0.9              
+            EPSILON         = 0.9              
             GAMMA           = 0.9                
             LAMBDA          = 0.9  
 TRAINING:   TOKYO[2000-2010]
@@ -852,9 +852,9 @@ LEARNING:   INIT_WEIGHT     = normal(0.01)
             LR              = 0.001
             UPDATE_FREQ     = 18 MONTHS
             MEMORY          = 24 MONTHS
-            ITERATION       = 20
+            ITERATION       = 50
             BATCH_SIZE      = 32
-            EPSILON         = 0.5, 0.9              
+            EPSILON         = 0.9              
             GAMMA           = 0.9                
             LAMBDA          = 0.9  
 TRAINING:   TOKYO[2000-2010]
@@ -941,9 +941,9 @@ LEARNING:   INIT_WEIGHT     = normal(0.01)
             LR              = 0.001
             UPDATE_FREQ     = 18 MONTHS
             MEMORY          = 24 MONTHS
-            ITERATION       = 20
+            ITERATION       = 50
             BATCH_SIZE      = 32
-            EPSILON         = 0.5, 0.9              
+            EPSILON         = 0.9              
             GAMMA           = 0.9                
             LAMBDA          = 0.9  
 TRAINING:   TOKYO[2000-2010]
@@ -1027,9 +1027,9 @@ LEARNING:   INIT_WEIGHT     = normal(0.01)
             LR              = 0.001
             UPDATE_FREQ     = 18 MONTHS
             MEMORY          = 24 MONTHS
-            ITERATION       = 20
+            ITERATION       = 50
             BATCH_SIZE      = 32
-            EPSILON         = 0.5, 0.9              
+            EPSILON         = 0.9              
             GAMMA           = 0.9                
             LAMBDA          = 0.9  
 TRAINING:   TOKYO[2000-2010]
@@ -1085,4 +1085,3 @@ Activation initiliazations don't seem to help that much.
 
 DISCUSSION:
 **************************************************************
-H- RELU vs I - Leaky RELU @ MSE LOSS

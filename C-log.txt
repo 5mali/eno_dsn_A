@@ -13,9 +13,9 @@ LEARNING:   INIT_WEIGHT     = normal(0.01)
             LR              = 0.001
             UPDATE_FREQ     = 18 MONTHS
             MEMORY          = 24 MONTHS
-            ITERATION       = 20
+            ITERATION       = 50
             BATCH_SIZE      = 32
-            EPSILON         = 0.5, 0.9              
+            EPSILON         = 0.9              
             GAMMA           = 0.9                
             LAMBDA          = 0.9  
 TRAINING:   TOKYO[2000-2010]
@@ -87,9 +87,9 @@ LEARNING:   INIT_WEIGHT     = normal(0.001)
             LR              = 0.001
             UPDATE_FREQ     = 18 MONTHS
             MEMORY          = 24 MONTHS
-            ITERATION       = 20
+            ITERATION       = 50
             BATCH_SIZE      = 32
-            EPSILON         = 0.5, 0.9              
+            EPSILON         = 0.9              
             GAMMA           = 0.9                
             LAMBDA          = 0.9  
 TRAINING:   TOKYO[2000-2010]
@@ -162,9 +162,9 @@ LEARNING:   INIT_WEIGHT     = normal(0.001)
             LR              = 0.0001
             UPDATE_FREQ     = 18 MONTHS
             MEMORY          = 24 MONTHS
-            ITERATION       = 20
+            ITERATION       = 50
             BATCH_SIZE      = 32
-            EPSILON         = 0.5, 0.9              
+            EPSILON         = 0.9              
             GAMMA           = 0.9                
             LAMBDA          = 0.9  
 TRAINING:   TOKYO[2000-2010]
@@ -239,9 +239,9 @@ LEARNING:   INIT_WEIGHT     = normal(0.01)
             LR              = 0.001
             UPDATE_FREQ     = 18 MONTHS
             MEMORY          = 24 MONTHS
-            ITERATION       = 20
+            ITERATION       = 50
             BATCH_SIZE      = 32
-            EPSILON         = 0.5, 0.9              
+            EPSILON         = 0.9              
             GAMMA           = 0.9                
             LAMBDA          = 0.9  
 TRAINING:   TOKYO[2000-2010]
@@ -299,6 +299,86 @@ DISCUSSION:
 
 **************************************************************
 
+C(RELU) -> C1(Huber)->C1B(LR=0.0005)
+
+HYPOTHESIS:
+Decrease LR to see if Huber loss actually makes a difference
+
+MODEL   :   C1B : INPUT->FC1->RELU->FC2->RELU->OUT
+                  LOSS = HUBER LOSS
+
+
+LEARNING:   INIT_WEIGHT     = normal(0.01)
+            WIDTH           = 20
+            DEPTH           = 2
+            WEIGHT_DECAY    = 1E-3
+            LR              = 0.0005
+            UPDATE_FREQ     = 18 MONTHS
+            MEMORY          = 24 MONTHS
+            ITERATION       = 50
+            BATCH_SIZE      = 32
+            EPSILON         = 0.9              
+            GAMMA           = 0.9                
+            LAMBDA          = 0.9  
+TRAINING:   TOKYO[2000-2010]
+            BATTERY_RESET    = 0 %
+            REWARD_FUNC      = TYPE2
+                               violation_penalty = 3
+                               battery full = -2
+                               battery dead = -4
+                               R = r1*(2**r2) - violation_penalty
+            REWARD_BROADCAST = TRUE
+TESTING:    TOKYO[2011-2018]
+            GREEDY POLICY
+
+NOTES:      
+
+
+RESULTS:
+SEED 0
+#slight improvement by decreasing LR
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.33 		 6
+2012 		 1.29 		 4
+2013 		 1.3 		 6
+2014 		 1.17 		 6
+2015 		 1.14 		 7
+2016 		 1.23 		 3
+2017 		 1.2 		 11
+2018 		 1.19 		 8
+
+SEED 1
+#slight decrease in performance
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.44 		 1
+2012 		 1.39 		 1
+2013 		 1.36 		 3
+2014 		 1.28 		 3
+2015 		 1.29 		 1
+2016 		 1.32 		 3
+2017 		 1.37 		 1
+2018 		 1.28 		 4
+
+
+SEED 2
+#decrease in performance
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.33 		 11
+2012 		 1.28 		 11
+2013 		 1.21 		 19
+2014 		 1.12 		 18
+2015 		 1.15 		 16
+2016 		 1.23 		 13
+2017 		 1.21 		 17
+2018 		 1.11 		 22
+
+CONCLUSIONS:
+Huber loss doesn't pose any definitive improvement over MSE.
+
+DISCUSSION:
+
+**************************************************************
+
 C(RELU) -> C2
 |
 C1(Huber Loss)
@@ -317,9 +397,9 @@ LEARNING:   INIT_WEIGHT     = normal(0.01)
             LR              = 0.001
             UPDATE_FREQ     = 18 MONTHS
             MEMORY          = 24 MONTHS
-            ITERATION       = 20
+            ITERATION       = 50
             BATCH_SIZE      = 32
-            EPSILON         = 0.5, 0.9              
+            EPSILON         = 0.9              
             GAMMA           = 0.9                
             LAMBDA          = 0.9  
 TRAINING:   TOKYO[2000-2010]
@@ -376,6 +456,90 @@ DISCUSSION:
 
 **************************************************************
 
+C(RELU) -> C2(LeakyRELU)-> C2B(LR=0.0005)
+|
+C1(Huber Loss)->C2B(LR=0.0005)
+
+HYPOTHESIS:
+USE LEAKY RELU
+
+MODEL   :   C2 : INPUT->FC1->LeakyRELU->FC2->LeakyRELU->OUT
+                 LOSS = MSE LOSS
+
+
+LEARNING:   INIT_WEIGHT     = normal(0.01)
+            WIDTH           = 20
+            DEPTH           = 2
+            WEIGHT_DECAY    = 1E-3
+            LR              = 0.0005
+            UPDATE_FREQ     = 18 MONTHS
+            MEMORY          = 24 MONTHS
+            ITERATION       = 50
+            BATCH_SIZE      = 32
+            EPSILON         = 0.9              
+            GAMMA           = 0.9                
+            LAMBDA          = 0.9  
+TRAINING:   TOKYO[2000-2010]
+            BATTERY_RESET    = 0 %
+            REWARD_FUNC      = TYPE2
+                               violation_penalty = 3
+                               battery full = -2
+                               battery dead = -4
+                               R = r1*(2**r2) - violation_penalty
+            REWARD_BROADCAST = TRUE
+TESTING:    TOKYO[2011-2018]
+            GREEDY POLICY
+
+NOTES:      
+
+
+RESULTS:
+SEED 0
+#definitive improvement
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.33 		 2
+2012 		 1.24 		 3
+2013 		 1.34 		 2
+2014 		 1.16 		 5
+2015 		 1.12 		 5
+2016 		 1.18 		 4
+2017 		 1.22 		 7
+2018 		 1.28 		 0
+
+
+SEED 1
+#similar if not better performance
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.46 		 0
+2012 		 1.4 		 0
+2013 		 1.45 		 0
+2014 		 1.33 		 0
+2015 		 1.32 		 0
+2016 		 1.37 		 0
+2017 		 1.4 		 2
+2018 		 1.38 		 1
+
+SEED 2
+#worse performance as compared to LR=0.001
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.12 		 15
+2012 		 1.08 		 14
+2013 		 1.07 		 18
+2014 		 0.81 		 28
+2015 		 0.99 		 13
+2016 		 1.2 		 5
+2017 		 1.02 		 19
+2018 		 1.0 		 14
+
+
+CONCLUSIONS:
+Leaky RELU may show some promise but does not show any substantial better performance.
+Will not rule out Leaky RELU just yet.
+
+DISCUSSION:
+
+
+**************************************************************
 C(RELU) -> C3
 |
 C1(Huber Loss)
@@ -396,9 +560,9 @@ LEARNING:   INIT_WEIGHT     = FC1 : Xavier
             LR              = 0.001
             UPDATE_FREQ     = 18 MONTHS
             MEMORY          = 24 MONTHS
-            ITERATION       = 20
+            ITERATION       = 50
             BATCH_SIZE      = 32
-            EPSILON         = 0.5, 0.9              
+            EPSILON         = 0.9              
             GAMMA           = 0.9                
             LAMBDA          = 0.9  
 TRAINING:   TOKYO[2000-2010]
@@ -479,9 +643,9 @@ LEARNING:   INIT_WEIGHT     = FC1 : Xavier
             LR              = 0.0001
             UPDATE_FREQ     = 18 MONTHS
             MEMORY          = 24 MONTHS
-            ITERATION       = 20
+            ITERATION       = 50
             BATCH_SIZE      = 32
-            EPSILON         = 0.5, 0.9              
+            EPSILON         = 0.9              
             GAMMA           = 0.9                
             LAMBDA          = 0.9  
 TRAINING:   TOKYO[2000-2010]
@@ -566,9 +730,9 @@ LEARNING:   INIT_WEIGHT     = FC1 : Kaiming
             LR              = 0.001
             UPDATE_FREQ     = 18 MONTHS
             MEMORY          = 24 MONTHS
-            ITERATION       = 20
+            ITERATION       = 50
             BATCH_SIZE      = 32
-            EPSILON         = 0.5, 0.9              
+            EPSILON         = 0.9              
             GAMMA           = 0.9                
             LAMBDA          = 0.9  
 TRAINING:   TOKYO[2000-2010]
@@ -651,9 +815,9 @@ LEARNING:   INIT_WEIGHT     = FC1 : Kaiming
             LR              = 0.0001
             UPDATE_FREQ     = 18 MONTHS
             MEMORY          = 24 MONTHS
-            ITERATION       = 20
+            ITERATION       = 50
             BATCH_SIZE      = 32
-            EPSILON         = 0.5, 0.9              
+            EPSILON         = 0.9              
             GAMMA           = 0.9                
             LAMBDA          = 0.9  
 TRAINING:   TOKYO[2000-2010]
@@ -786,9 +950,9 @@ LEARNING:   INIT_WEIGHT     = FC1 : TBD
             LR              = 0.0005
             UPDATE_FREQ     = 18 MONTHS
             MEMORY          = 24 MONTHS
-            ITERATION       = 20
+            ITERATION       = 50
             BATCH_SIZE      = 32
-            EPSILON         = 0.5, 0.9              
+            EPSILON         = 0.9              
             GAMMA           = 0.9                
             LAMBDA          = 0.9  
 TRAINING:   TOKYO[2000-2010]
