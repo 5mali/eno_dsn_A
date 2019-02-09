@@ -938,12 +938,12 @@ C4(Ka-Ka-Xa)->C4A(LR=0.0001)->C4B
 HYPOTHESIS:
 Since LR=0.0001 had some slow learning behavior, check how learning rate to 0.0005 turns out.
 
-MODEL   :   C5 : INPUT->FC1->LRELU->FC2->LRELU->OUT
-                 LOSS : HUBER
+MODEL   :   C4B : INPUT->FC1->LRELU->FC2->LRELU->OUT
+                 LOSS : MSE
 
-LEARNING:   INIT_WEIGHT     = FC1 : TBD
-                              FC2 : TBD
-                              OUT : TBD
+LEARNING:   INIT_WEIGHT     = FC1 : Kaiming
+                              FC2 : Kaiming
+                              OUT : Xavier
             WIDTH           = 20
             DEPTH           = 2
             WEIGHT_DECAY    = 1E-3
@@ -1056,4 +1056,136 @@ LR=0.0005 seems like a good compromise for LR.
 
 DISCUSSION:
 
+**************************************************************
+**************************************************************
+
+C(RELU)
+|
+C1(Huber Loss)
+|              
+C2(Leaky RELU)
+|
+C3(Xa-Ka-Ka)   
+|              
+C4(Ka-Ka-Xa)-->C4A(LR=0.0001)--OK
+|
+C4B->C4B1
+
+HYPOTHESIS:
+Check how the performance varies if EPSILON is increase to 0.95
+
+MODEL   :   C4B1 : INPUT->FC1->LRELU->FC2->LRELU->OUT
+                   LOSS : MSE
+
+LEARNING:   INIT_WEIGHT     = FC1 : Kaiming
+                              FC2 : Kaiming
+                              OUT : Xavier
+            WIDTH           = 20
+            DEPTH           = 2
+            WEIGHT_DECAY    = 1E-3
+            LR              = 0.0005
+            UPDATE_FREQ     = 18 MONTHS
+            MEMORY          = 24 MONTHS
+            ITERATION       = 50
+            BATCH_SIZE      = 32
+            EPSILON         = 0.95              
+            GAMMA           = 0.9                
+            LAMBDA          = 0.9  
+TRAINING:   TOKYO[2000-2009]
+            BATTERY_RESET    = 0 %
+            REWARD_FUNC      = TYPE2
+                               violation_penalty = 3
+                               battery full = -2
+                               battery dead = -4
+                               R = r1*(2**r2) - violation_penalty
+            REWARD_BROADCAST = TRUE
+TESTING:    TOKYO[2011-2018]
+            GREEDY POLICY
+RESULTS:
+#overall better performance but not very significant.
+
+SEED 0
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.41 		 0
+2012 		 1.38 		 0
+2013 		 1.4 		 0
+2014 		 1.32 		 0
+2015 		 1.31 		 0
+2016 		 1.33 		 0
+2017 		 1.38 		 0
+2018 		 1.35 		 0
+
+SEED 1
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.36 		 0
+2012 		 1.26 		 1
+2013 		 1.34 		 1
+2014 		 1.23 		 1
+2015 		 1.24 		 0
+2016 		 1.29 		 1
+2017 		 1.32 		 3
+2018 		 1.29 		 1
+
+SEED 2
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.45 		 0
+2012 		 1.38 		 0
+2013 		 1.41 		 0
+2014 		 1.29 		 1
+2015 		 1.28 		 1
+2016 		 1.34 		 0
+2017 		 1.38 		 3
+2018 		 1.34 		 0
+
+SEED 3
+EAR		AVG_RWD		VIOLATIONS
+2011 		 1.46 		 2
+2012 		 1.4 		 1
+2013 		 1.43 		 1
+2014 		 1.24 		 6
+2015 		 1.26 		 7
+2016 		 1.39 		 3
+2017 		 1.47 		 2
+2018 		 1.38 		 1
+
+SEED 4
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.36 		 1
+2012 		 1.34 		 1
+2013 		 1.29 		 3
+2014 		 1.2 		 2
+2015 		 1.24 		 0
+2016 		 1.28 		 3
+2017 		 1.32 		 3
+2018 		 1.25 		 2
+
+SEED 5
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.44 		 0
+2012 		 1.34 		 0
+2013 		 1.39 		 0
+2014 		 1.29 		 0
+2015 		 1.29 		 0
+2016 		 1.37 		 0
+2017 		 1.38 		 2
+2018 		 1.35 		 0
+
+
+SEED 6
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.5 		 0
+2012 		 1.44 		 0
+2013 		 1.5 		 0
+2014 		 1.41 		 0
+2015 		 1.38 		 0
+2016 		 1.42 		 0
+2017 		 1.47 		 0
+2018 		 1.42 		 0
+
+
+CONCLUSIONS:
+Slightly Better performance.
+
+DISCUSSION:
+Better performance for reduced robustness?
 **************************************************************

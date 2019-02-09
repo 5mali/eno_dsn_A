@@ -5,9 +5,802 @@ C(RELU)
 |              
 |--C2(Leaky RELU)--X
 |
+|--C3(Xa-Ka-Ka)--X                |-->OC0A(Disruptive)-->0C0A1(WIDTH=50) 
+|                                 |
+|--C4(Ka-Ka-Xa)->C4A(LR=0.0001)->C4B-x->0C0 (No change during last phase)
+                                  |     |
+                                  x     x                               
+                                  |     |
+                                  |     |-->OC3(DEPTH=3)->0C3A(Disruptive Training)--!!!
+                                  |     |
+                                  |     |-->OC2(WIDTH=50)->0C2A(Disruptive Training)--OK
+                                  |     
+                                  |
+                                  |--->0C--------------XX
+                                       |
+                                       0C1(WIDTH=50) --XX
+
+
+HYPOTHESIS:
+Disruptive training with sawtooth EPSILON ranging from 0.5 to 0.95 to make model more robust
+
+Increase WIDTH so that network learns better during disruption
+
+MODEL:
+0C0A1 : INPUT->FC1->RELU->FC2->RELU->OUT
+LOSS : MSE
+
+LEARNING:   INIT_WEIGHT     = FC1 : KAIMING
+                              FC2 : KAIMING
+                              OUT : XAVIER
+            WIDTH           = 50
+            DEPTH           = 2
+            WEIGHT_DECAY    = 1E-3
+            LR              = 1E-4
+            UPDATE_FREQ     = 18 MONTHS
+            MEMORY          = 24 MONTHS
+            ITERATION       = 50
+            BATCH_SIZE      = 32
+            EPSILON         = SAWTOOTH (0.5-0.95)              
+            GAMMA           = 0.9                
+            LAMBDA          = 0.9
+            
+TRAINING:   TOKYO[2000-2009]
+            BATTERY_RESET    = 0 %
+            REWARD_FUNC      = TYPE2
+                               violation_penalty = 3
+                               battery full = -2
+                               battery dead = -4
+                               R = r1*(2**r2) - violation_penalty
+            REWARD_BROADCAST = TRUE
+            
+            LAST TRAINING ITERATIONS = 10 [TOKYO, 2000-2009]
+            VALIDATION SET = [TOKYO, 2010-2015]
+            EPSILON                  = 0.95
+            LR                       = 1E-4
+            
+TESTING:    TOKYO[2000-2018]
+            GREEDY POLICY
+   
+
+RESULTS:
+SEED 0
+
+SEED 1
+
+
+SEED 2
+
+
+SEED 3
+
+CONCLUSIONS:
+
+
+DISCUSSION:
+
+**************************************************************
+**************************************************************
+C(RELU)
+|
+|--C1(Huber Loss)--X
+|              
+|--C2(Leaky RELU)--X
+|
+|--C3(Xa-Ka-Ka)--X                |-->OC0A 
+|                                 |
+|--C4(Ka-Ka-Xa)->C4A(LR=0.0001)->C4B-x->0C0 (No change during last phase)
+                                  |     |
+                                  x     x                               
+                                  |     |
+                                  |     |-->OC3(DEPTH=3)->0C3A(Disruptive Training)--!!!
+                                  |     |
+                                  |     |-->OC2(WIDTH=50)->0C2A(Disruptive Training)--OK
+                                  |     
+                                  |
+                                  |--->0C--------------XX
+                                       |
+                                       0C1(WIDTH=50) --XX
+
+
+HYPOTHESIS:
+Disruptive training with sawtooth EPSILON ranging from 0.5 to 0.95 to make model more robust
+
+MODEL:
+0C0A : INPUT->FC1->RELU->FC2->RELU->OUT
+LOSS : MSE
+
+LEARNING:   INIT_WEIGHT     = FC1 : KAIMING
+                              FC2 : KAIMING
+                              OUT : XAVIER
+            WIDTH           = 20
+            DEPTH           = 2
+            WEIGHT_DECAY    = 1E-3
+            LR              = 1E-4
+            UPDATE_FREQ     = 18 MONTHS
+            MEMORY          = 24 MONTHS
+            ITERATION       = 50
+            BATCH_SIZE      = 32
+            EPSILON         = SAWTOOTH (0.5-0.95)              
+            GAMMA           = 0.9                
+            LAMBDA          = 0.9
+            
+TRAINING:   TOKYO[2000-2009]
+            BATTERY_RESET    = 0 %
+            REWARD_FUNC      = TYPE2
+                               violation_penalty = 3
+                               battery full = -2
+                               battery dead = -4
+                               R = r1*(2**r2) - violation_penalty
+            REWARD_BROADCAST = TRUE
+            
+            LAST TRAINING ITERATIONS = 10 [TOKYO, 2000-2009]
+            VALIDATION SET = [TOKYO, 2010-2015]
+            EPSILON                  = 0.95
+            LR                       = 1E-4
+            
+TESTING:    TOKYO[2000-2018]
+            GREEDY POLICY
+   
+
+RESULTS:
+SEED 0
+
+SEED 1
+
+
+SEED 2
+
+
+SEED 3
+
+CONCLUSIONS:
+
+
+DISCUSSION:
+
+**************************************************************
+**************************************************************
+C(RELU)
+|
+|--C1(Huber Loss)--X
+|              
+|--C2(Leaky RELU)--X
+|
 |--C3(Xa-Ka-Ka)--X   
 |              
-|--C4(Ka-Ka-Xa)->C4A(LR=0.0001)->C4B->0C->0C1
+|--C4(Ka-Ka-Xa)->C4A(LR=0.0001)->C4B-->0C0 (No change during last phase)
+                                  |     |
+                                  |     |-->OC3(DEPTH=3)->0C3A--!!!
+                                  |     |
+                                  |     |-->OC2(WIDTH=50)->0C2A--OK
+                                  |     
+                                  |
+                                  |--->0C--------------XX
+                                       |
+                                       0C1(WIDTH=50) --XX
+
+
+HYPOTHESIS:
+Disruptive training with sawtooth EPSILON ranging from 0.5 to 0.95 to make model more robust
+
+MODEL:
+0C3A : INPUT->FC1->RELU->FC2->RELU->OUT
+LOSS : MSE
+
+LEARNING:   INIT_WEIGHT     = FC1 : KAIMING
+                              FC2 : KAIMING
+                              FC3 : KAIMING
+                              OUT : XAVIER
+            WIDTH           = 20
+            DEPTH           = 3
+            WEIGHT_DECAY    = 1E-3
+            LR              = 1E-4
+            UPDATE_FREQ     = 18 MONTHS
+            MEMORY          = 24 MONTHS
+            ITERATION       = 50
+            BATCH_SIZE      = 32
+            EPSILON         = SAWTOOTH (0.5-0.95)              
+            GAMMA           = 0.9                
+            LAMBDA          = 0.9
+            
+TRAINING:   TOKYO[2000-2009]
+            BATTERY_RESET    = 0 %
+            REWARD_FUNC      = TYPE2
+                               violation_penalty = 3
+                               battery full = -2
+                               battery dead = -4
+                               R = r1*(2**r2) - violation_penalty
+            REWARD_BROADCAST = TRUE
+            
+            LAST TRAINING ITERATIONS = 10 [TOKYO, 2000-2009]
+            EPSILON                  = 0.95
+            LR                       = 1E-4
+            
+TESTING:    TOKYO[2010-2018]
+            GREEDY POLICY
+   
+
+RESULTS:
+SEED 0
+#something is very wrong here. Analyze this.
+#except for seed0, performance seems to be more robust
+TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.18 		 9
+2012 		 -4.36 		 222
+2013 		 1.21 		 5
+2014 		 0.15 		 48
+2015 		 -1.65 		 116
+2016 		 0.32 		 40
+2017 		 -0.66 		 80
+2018 		 1.14 		 9
+TESTING BASED ON VIOLATION COUNTER METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.18 		 9
+2012 		 -4.36 		 222
+2013 		 1.21 		 5
+2014 		 0.15 		 48
+2015 		 -1.65 		 116
+2016 		 0.32 		 40
+2017 		 -0.66 		 80
+2018 		 1.14 		 9
+
+SEED 1
+TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.39 		 0
+2012 		 1.27 		 3
+2013 		 1.38 		 0
+2014 		 1.28 		 0
+2015 		 1.2 		 2
+2016 		 1.28 		 0
+2017 		 1.26 		 6
+2018 		 1.3 		 0
+TESTING BASED ON VIOLATION COUNTER METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.39 		 0
+2012 		 1.27 		 3
+2013 		 1.38 		 0
+2014 		 1.28 		 0
+2015 		 1.2 		 2
+2016 		 1.28 		 0
+2017 		 1.26 		 6
+2018 		 1.3 		 0
+
+SEED 2
+TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.53 		 1
+2012 		 1.44 		 2
+2013 		 1.48 		 1
+2014 		 1.4 		 0
+2015 		 1.38 		 1
+2016 		 1.41 		 3
+2017 		 1.45 		 3
+2018 		 1.44 		 1
+TESTING BASED ON VIOLATION COUNTER METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.53 		 1
+2012 		 1.44 		 2
+2013 		 1.48 		 1
+2014 		 1.4 		 0
+2015 		 1.38 		 1
+2016 		 1.41 		 3
+2017 		 1.45 		 3
+2018 		 1.44 		 1
+
+SEED 3
+TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.56 		 0
+2012 		 1.48 		 0
+2013 		 1.51 		 0
+2014 		 1.44 		 0
+2015 		 1.42 		 0
+2016 		 1.47 		 0
+2017 		 1.53 		 0
+2018 		 1.46 		 0
+TESTING BASED ON VIOLATION COUNTER METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.56 		 0
+2012 		 1.48 		 0
+2013 		 1.51 		 0
+2014 		 1.44 		 0
+2015 		 1.42 		 0
+2016 		 1.47 		 0
+2017 		 1.53 		 0
+2018 		 1.46 		 0
+
+
+
+CONCLUSIONS:
+
+
+DISCUSSION:
+The very different results maybe due to the line EPSILON=1 somewhere in the code.
+All experiments starting from 0C0 must be redone.
+**************************************************************
+**************************************************************
+C(RELU)
+|
+|--C1(Huber Loss)--X
+|              
+|--C2(Leaky RELU)--X
+|
+|--C3(Xa-Ka-Ka)--X   
+|              
+|--C4(Ka-Ka-Xa)->C4A(LR=0.0001)->C4B-->0C0 (No change during last phase)
+                                  |     |
+                                  |     |-->OC3(DEPTH=3)--X
+                                  |     |
+                                  |     |-->OC2(WIDTH=50)->0C2A
+                                  |     
+                                  |
+                                  |--->0C--------------XX
+                                       |
+                                       0C1(WIDTH=50) --XX
+
+
+HYPOTHESIS:
+Disruptive training with sawtooth EPSILON ranging from 0.5 to 0.95 to make model more robust
+
+MODEL:
+0C2A : INPUT->FC1->RELU->FC2->RELU->OUT
+LOSS : MSE
+
+LEARNING:   INIT_WEIGHT     = FC1 : KAIMING
+                              FC2 : KAIMING
+                              OUT : XAVIER
+            WIDTH           = 20
+            DEPTH           = 2
+            WEIGHT_DECAY    = 1E-3
+            LR              = 1E-4
+            UPDATE_FREQ     = 18 MONTHS
+            MEMORY          = 24 MONTHS
+            ITERATION       = 50
+            BATCH_SIZE      = 32
+            EPSILON         = SAWTOOTH (0.5-0.95)              
+            GAMMA           = 0.9                
+            LAMBDA          = 0.9
+            
+TRAINING:   TOKYO[2000-2009]
+            BATTERY_RESET    = 0 %
+            REWARD_FUNC      = TYPE2
+                               violation_penalty = 3
+                               battery full = -2
+                               battery dead = -4
+                               R = r1*(2**r2) - violation_penalty
+            REWARD_BROADCAST = TRUE
+            
+            LAST TRAINING ITERATIONS = 10 [TOKYO, 2000-2009]
+            EPSILON                  = 0.95
+            LR                       = 1E-4
+            
+TESTING:    TOKYO[2010-2018]
+            GREEDY POLICY
+   
+
+RESULTS:
+#Definitely better than 0C2
+
+SEED 0
+TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.43 		 0
+2012 		 1.38 		 0
+2013 		 1.4 		 0
+2014 		 1.33 		 0
+2015 		 1.36 		 0
+2016 		 1.38 		 0
+2017 		 1.42 		 0
+2018 		 1.36 		 0
+TESTING BASED ON VIOLATION COUNTER METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.43 		 0
+2012 		 1.38 		 0
+2013 		 1.4 		 0
+2014 		 1.33 		 0
+2015 		 1.36 		 0
+2016 		 1.38 		 0
+2017 		 1.42 		 0
+2018 		 1.36 		 0
+
+SEED 1
+TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.5 		 0
+2012 		 1.4 		 2
+2013 		 1.49 		 0
+2014 		 1.4 		 0
+2015 		 1.36 		 4
+2016 		 1.47 		 1
+2017 		 1.48 		 1
+2018 		 1.47 		 0
+TESTING BASED ON VIOLATION COUNTER METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.5 		 0
+2012 		 1.4 		 2
+2013 		 1.49 		 0
+2014 		 1.4 		 0
+2015 		 1.36 		 4
+2016 		 1.47 		 1
+2017 		 1.48 		 1
+2018 		 1.47 		 0
+
+SEED 2
+TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.34 		 1
+2012 		 1.32 		 0
+2013 		 1.35 		 0
+2014 		 1.21 		 2
+2015 		 1.28 		 0
+2016 		 1.29 		 2
+2017 		 1.23 		 6
+2018 		 1.29 		 1
+TESTING BASED ON VIOLATION COUNTER METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.34 		 1
+2012 		 1.32 		 0
+2013 		 1.35 		 0
+2014 		 1.21 		 2
+2015 		 1.28 		 0
+2016 		 1.29 		 2
+2017 		 1.23 		 6
+2018 		 1.29 		 1
+
+SEED 3
+TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.46 		 1
+2012 		 1.33 		 3
+2013 		 1.43 		 0
+2014 		 1.25 		 5
+2015 		 1.3 		 2
+2016 		 1.36 		 2
+2017 		 1.35 		 6
+2018 		 1.38 		 0
+TESTING BASED ON VIOLATION COUNTER METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.46 		 1
+2012 		 1.33 		 3
+2013 		 1.43 		 0
+2014 		 1.25 		 5
+2015 		 1.3 		 2
+2016 		 1.36 		 2
+2017 		 1.35 		 6
+2018 		 1.38 		 0
+
+
+CONCLUSIONS:
+Disruptive learning improves performance
+
+DISCUSSION:
+**************************************************************
+**************************************************************
+C(RELU)
+|
+|--C1(Huber Loss)--X
+|              
+|--C2(Leaky RELU)--X
+|
+|--C3(Xa-Ka-Ka)--X   
+|              
+|--C4(Ka-Ka-Xa)->C4A(LR=0.0001)->C4B-->0C0 (No change during last phase)->0C3
+                                  |     |-->OC2 (WIDTH=50)
+                                  |
+                                  |--->0C--------------XX
+                                       |
+                                       0C1(WIDTH=50) --XX
+
+
+HYPOTHESIS:
+Increase layer depth to see if it improves performance.
+
+MODEL:
+
+0C3 : INPUT->FC1->RELU->FC2->RELU->OUT
+LOSS : MSE
+
+LEARNING:   INIT_WEIGHT     = FC1 : KAIMING
+                              FC2 : KAIMING
+                              FC3 : KAIMING
+                              OUT : XAVIER
+            WIDTH           = 20
+            DEPTH           = 3
+            WEIGHT_DECAY    = 1E-3
+            LR              = 1E-4
+            UPDATE_FREQ     = 18 MONTHS
+            MEMORY          = 24 MONTHS
+            ITERATION       = 50
+            BATCH_SIZE      = 32
+            EPSILON         = 0.9              
+            GAMMA           = 0.9                
+            LAMBDA          = 0.9
+            
+TRAINING:   TOKYO[2000-2009]
+            BATTERY_RESET    = 0 %
+            REWARD_FUNC      = TYPE2
+                               violation_penalty = 3
+                               battery full = -2
+                               battery dead = -4
+                               R = r1*(2**r2) - violation_penalty
+            REWARD_BROADCAST = TRUE
+            
+            LAST TRAINING ITERATIONS = 10 [TOKYO, 2000-2009]
+            EPSILON                  = 0.9
+            LR                       = 1E-4
+            
+TESTING:    TOKYO[2015-2018]
+            GREEDY POLICY
+   
+
+RESULTS:
+SEED 0
+TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.31 		 0
+2012 		 1.28 		 0
+2013 		 1.3 		 0
+2014 		 1.21 		 1
+2015 		 1.23 		 0
+2016 		 1.25 		 1
+2017 		 1.32 		 0
+2018 		 1.21 		 3
+TESTING BASED ON VIOLATION COUNTER METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.31 		 0
+2012 		 1.28 		 0
+2013 		 1.3 		 0
+2014 		 1.21 		 1
+2015 		 1.23 		 0
+2016 		 1.25 		 1
+2017 		 1.32 		 0
+2018 		 1.21 		 3
+
+SEED 1
+TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.33 		 1
+2012 		 1.3 		 1
+2013 		 1.32 		 0
+2014 		 1.24 		 0
+2015 		 1.23 		 0
+2016 		 1.25 		 1
+2017 		 -0.59 		 78
+2018 		 1.26 		 0
+TESTING BASED ON VIOLATION COUNTER METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.33 		 1
+2012 		 1.3 		 1
+2013 		 1.32 		 0
+2014 		 1.24 		 0
+2015 		 1.23 		 0
+2016 		 1.25 		 1
+2017 		 -0.59 		 78
+2018 		 1.26 		 0
+
+SEED 2
+TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.33 		 3
+2012 		 1.29 		 4
+2013 		 1.26 		 7
+2014 		 1.16 		 11
+2015 		 1.25 		 5
+2016 		 1.28 		 3
+2017 		 1.29 		 6
+2018 		 1.26 		 3
+TESTING BASED ON VIOLATION COUNTER METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.33 		 3
+2012 		 1.29 		 4
+2013 		 1.26 		 7
+2014 		 1.16 		 11
+2015 		 1.25 		 5
+2016 		 1.28 		 3
+2017 		 1.29 		 6
+2018 		 1.26 		 3
+
+SEED 3
+TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.51 		 0
+2012 		 1.48 		 0
+2013 		 1.5 		 0
+2014 		 1.43 		 0
+2015 		 1.42 		 0
+2016 		 1.43 		 0
+2017 		 1.48 		 0
+2018 		 1.44 		 0
+TESTING BASED ON VIOLATION COUNTER METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.51 		 0
+2012 		 1.48 		 0
+2013 		 1.5 		 0
+2014 		 1.43 		 0
+2015 		 1.42 		 0
+2016 		 1.43 		 0
+2017 		 1.48 		 0
+2018 		 1.44 		 0
+
+
+CONCLUSIONS:
+Better performance on good models
+Very bad performanc on other models
+
+DISCUSSION:
+Disruptive learning seems to be required.
+**************************************************************
+**************************************************************
+C(RELU)
+|
+|--C1(Huber Loss)--X
+|              
+|--C2(Leaky RELU)--X
+|
+|--C3(Xa-Ka-Ka)--X   
+|              
+|--C4(Ka-Ka-Xa)->C4A(LR=0.0001)->C4B-->0C0 (No change during last phase)-->OC2
+                                  |
+                                  |--->0C--------------XX
+                                       |
+                                       0C1(WIDTH=50) --XX
+
+
+HYPOTHESIS:
+Increase layer width to see if it improves performance.
+
+MODEL:
+
+0C2 : INPUT->FC1->RELU->FC2->RELU->OUT
+LOSS : MSE
+
+LEARNING:   INIT_WEIGHT     = FC1 : KAIMING
+                              FC2 : KAIMING
+                              OUT : XAVIER
+            WIDTH           = 50
+            DEPTH           = 2
+            WEIGHT_DECAY    = 1E-3
+            LR              = 1E-4
+            UPDATE_FREQ     = 18 MONTHS
+            MEMORY          = 24 MONTHS
+            ITERATION       = 50
+            BATCH_SIZE      = 32
+            EPSILON         = 0.9              
+            GAMMA           = 0.9                
+            LAMBDA          = 0.9
+            
+TRAINING:   TOKYO[2000-2009]
+            BATTERY_RESET    = 0 %
+            REWARD_FUNC      = TYPE2
+                               violation_penalty = 3
+                               battery full = -2
+                               battery dead = -4
+                               R = r1*(2**r2) - violation_penalty
+            REWARD_BROADCAST = TRUE
+            
+            LAST TRAINING ITERATIONS = 10 [TOKYO, 2000-2009]
+            EPSILON                  = 0.9
+            LR                       = 1E-4
+            
+TESTING:    TOKYO[2015-2018]
+            GREEDY POLICY
+   
+
+RESULTS:
+SEED 0
+TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.19 		 10
+2012 		 -0.12 		 60
+2013 		 -1.03 		 96
+2014 		 -0.44 		 70
+2015 		 -0.42 		 72
+2016 		 -1.77 		 124
+2017 		 -1.3 		 108
+2018 		 -2.35 		 146
+TESTING BASED ON VIOLATION COUNTER METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.19 		 10
+2012 		 -0.12 		 60
+2013 		 -1.03 		 96
+2014 		 -0.44 		 70
+2015 		 -0.42 		 72
+2016 		 -1.77 		 124
+2017 		 -1.3 		 108
+2018 		 -2.35 		 146
+
+SEED 1
+TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.25 		 1
+2012 		 1.21 		 3
+2013 		 1.17 		 6
+2014 		 1.05 		 10
+2015 		 1.2 		 1
+2016 		 1.2 		 3
+2017 		 1.22 		 4
+2018 		 1.21 		 2
+TESTING BASED ON VIOLATION COUNTER METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.25 		 1
+2012 		 1.21 		 3
+2013 		 1.17 		 6
+2014 		 1.05 		 10
+2015 		 1.2 		 1
+2016 		 1.2 		 3
+2017 		 1.22 		 4
+2018 		 1.21 		 2
+
+SEED 2
+TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.53 		 0
+2012 		 1.46 		 0
+2013 		 1.51 		 0
+2014 		 1.43 		 0
+2015 		 1.42 		 0
+2016 		 1.46 		 0
+2017 		 1.49 		 0
+2018 		 1.46 		 0
+TESTING BASED ON VIOLATION COUNTER METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.53 		 0
+2012 		 1.46 		 0
+2013 		 1.51 		 0
+2014 		 1.43 		 0
+2015 		 1.42 		 0
+2016 		 1.46 		 0
+2017 		 1.49 		 0
+2018 		 1.46 		 0
+
+SEED 3
+TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.57 		 0
+2012 		 1.5 		 0
+2013 		 1.53 		 0
+2014 		 1.46 		 0
+2015 		 1.45 		 0
+2016 		 1.5 		 0
+2017 		 -0.41 		 76
+2018 		 1.5 		 0
+TESTING BASED ON VIOLATION COUNTER METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.57 		 0
+2012 		 1.5 		 0
+2013 		 1.53 		 0
+2014 		 1.46 		 0
+2015 		 1.45 		 0
+2016 		 1.5 		 0
+2017 		 -0.41 		 76
+2018 		 1.5 		 0
+
+
+CONCLUSIONS:
+When it works, it works really really good. But when it does not, it works very bad.
+
+Maybe due to lack of training for bad days.
+
+DISCUSSION:
+
+**************************************************************
+**************************************************************
+C(RELU)
+|
+|--C1(Huber Loss)--X
+|              
+|--C2(Leaky RELU)--X
+|
+|--C3(Xa-Ka-Ka)--X   
+|              
+|--C4(Ka-Ka-Xa)->C4A(LR=0.0001)->C4B-->0C0 (No change during last phase)--OK
+                                  |
+                                  |--->0C--XX
+                                       |
+                                       0C1(WIDTH=50)
 
 
 HYPOTHESIS:
@@ -118,9 +911,165 @@ CONCLUSIONS:
 Better behavior is shown when Layer width is increased.
 
 DISCUSSION:
-The cause of non-robustness should be identifies.
+The cause of non-robustness should be identified.
 Maybe due to lack of experiences when battery dies.
 More analysis required
+**************************************************************
+**************************************************************
+C(RELU)
+|
+|--C1(Huber Loss)--X
+|              
+|--C2(Leaky RELU)--X
+|
+|--C3(Xa-Ka-Ka)--X   
+|              
+|--C4(Ka-Ka-Xa)->C4A(LR=0.0001)->C4B-->0C0
+                                  |--->0C(Change EPSILON and RL in last phase)--X
+
+
+HYPOTHESIS:
+
+After 50 iterations, get the best model in the next 10 iterations depending on average annual average reward/total violation counter.
+
+Keep LR and EPSILON same during last phase of training
+
+MODEL:
+
+0C : INPUT->FC1->RELU->FC2->RELU->OUT
+LOSS : MSE
+
+LEARNING:   INIT_WEIGHT     = FC1 : KAIMING
+                              FC2 : KAIMING
+                              OUT : XAVIER
+            WIDTH           = 20
+            DEPTH           = 2
+            WEIGHT_DECAY    = 1E-3
+            LR              = 1E-4
+            UPDATE_FREQ     = 18 MONTHS
+            MEMORY          = 24 MONTHS
+            ITERATION       = 50
+            BATCH_SIZE      = 32
+            EPSILON         = 0.9              
+            GAMMA           = 0.9                
+            LAMBDA          = 0.9
+            
+TRAINING:   TOKYO[2000-2009]
+            BATTERY_RESET    = 0 %
+            REWARD_FUNC      = TYPE2
+                               violation_penalty = 3
+                               battery full = -2
+                               battery dead = -4
+                               R = r1*(2**r2) - violation_penalty
+            REWARD_BROADCAST = TRUE
+            
+            LAST TRAINING ITERATIONS = 10 [TOKYO, 2000-2009]
+            EPSILON                  = 0.9
+            LR                       = 1E-4
+            
+TESTING:    TOKYO[2010-2018]
+            GREEDY POLICY
+   
+
+RESULTS:
+
+SEED 0
+TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.44 		 1
+2012 		 1.28 		 4
+2013 		 1.4 		 2
+2014 		 1.05 		 12
+2015 		 1.26 		 3
+2016 		 1.32 		 3
+2017 		 1.32 		 6
+2018 		 1.36 		 1
+TESTING BASED ON VIOLATION COUNTER METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.44 		 1
+2012 		 1.28 		 4
+2013 		 1.4 		 2
+2014 		 1.05 		 12
+2015 		 1.26 		 3
+2016 		 1.32 		 3
+2017 		 1.32 		 6
+2018 		 1.36 		 1
+
+
+SEED 1
+TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.47 		 0
+2012 		 1.39 		 1
+2013 		 1.45 		 0
+2014 		 1.35 		 0
+2015 		 1.36 		 1
+2016 		 1.39 		 0
+2017 		 1.46 		 0
+2018 		 1.38 		 0
+TESTING BASED ON VIOLATION COUNTER METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.47 		 0
+2012 		 1.39 		 1
+2013 		 1.45 		 0
+2014 		 1.35 		 0
+2015 		 1.36 		 1
+2016 		 1.39 		 0
+2017 		 1.46 		 0
+2018 		 1.38 		 0
+
+SEED 2
+TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.52 		 1
+2012 		 1.5 		 0
+2013 		 1.46 		 3
+2014 		 1.35 		 3
+2015 		 1.42 		 1
+2016 		 1.44 		 0
+2017 		 1.49 		 1
+2018 		 1.39 		 5
+TESTING BASED ON VIOLATION COUNTER METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.52 		 1
+2012 		 1.5 		 0
+2013 		 1.46 		 3
+2014 		 1.35 		 3
+2015 		 1.42 		 1
+2016 		 1.44 		 0
+2017 		 1.49 		 1
+2018 		 1.39 		 5
+
+
+SEED 3
+TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.47 		 1
+2012 		 1.37 		 3
+2013 		 1.45 		 1
+2014 		 1.3 		 4
+2015 		 1.24 		 4
+2016 		 1.32 		 2
+2017 		 1.37 		 4
+2018 		 1.38 		 0
+TESTING BASED ON VIOLATION COUNTER METRIC
+YEAR		AVG_RWD		VIOLATIONS
+2011 		 1.47 		 1
+2012 		 1.37 		 3
+2013 		 1.45 		 1
+2014 		 1.3 		 4
+2015 		 1.24 		 4
+2016 		 1.32 		 2
+2017 		 1.37 		 4
+2018 		 1.38 		 0
+
+
+CONCLUSIONS:
+Acceptable Performance. Room for improvement
+
+DISCUSSION:
+
+
 **************************************************************
 **************************************************************
 C(RELU)
@@ -139,6 +1088,7 @@ Proper validation is required.
 
 After 50 iterations, get the best model in the next 10 iterations depending on average annual average reward/total violation counter.
 
+Change EPSILON and LR in the last phase of training to get more stabler output
 MODEL:
 
 0C : INPUT->FC1->RELU->FC2->RELU->OUT
@@ -240,142 +1190,9 @@ YEAR		AVG_RWD		VIOLATIONS
 
 
 CONCLUSIONS:
-The cause of non-robust behaviro is unknown.
+Reducing LR/EPSILON does not cause STABLER OUTPUT.
+The cause of non-robust behavior is unknown.
 
 DISCUSSION:
-More analysis required
-**************************************************************
-**************************************************************
-C(RELU)
-|
-|--C1(Huber Loss)--X
-|              
-|--C2(Leaky RELU)--X
-|
-|--C3(Xa-Ka-Ka)--X   
-|              
-|--C4(Ka-Ka-Xa)->C4A(LR=0.0001)->C4B
-
-
-HYPOTHESIS:
-Since LR=0.0001 had some slow learning behavior, check how learning rate to 0.0005 turns out.
-
-MODEL:
-
-C4B : INPUT->FC1->RELU->FC2->RELU->OUT
-LOSS : MSE
-
-LEARNING:   INIT_WEIGHT     = FC1 : KAIMING
-                              FC2 : KAIMING
-                              OUT : XAVIER
-            WIDTH           = 20
-            DEPTH           = 2
-            WEIGHT_DECAY    = 1E-3
-            LR              = 0.0005
-            UPDATE_FREQ     = 18 MONTHS
-            MEMORY          = 24 MONTHS
-            ITERATION       = 50
-            BATCH_SIZE      = 32
-            EPSILON         = 0.9              
-            GAMMA           = 0.9                
-            LAMBDA          = 0.9
-            
-TRAINING:   TOKYO[2000-2010]
-            BATTERY_RESET    = 0 %
-            REWARD_FUNC      = TYPE2
-                               violation_penalty = 3
-                               battery full = -2
-                               battery dead = -4
-                               R = r1*(2**r2) - violation_penalty
-            REWARD_BROADCAST = TRUE
-            
-TESTING:    TOKYO[2011-2018]
-            GREEDY POLICY
-   
-
-RESULTS:
-# As good as if not better than C4A.
-SEED 0
-YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.2 		 3
-2012 		 1.1 		 4
-2013 		 1.19 		 0
-2014 		 1.07 		 5
-2015 		 1.11 		 4
-2016 		 1.22 		 1
-2017 		 1.26 		 2
-2018 		 1.13 		 3
-
-SEED 1
-YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.41 		 0
-2012 		 1.38 		 0
-2013 		 1.4 		 0
-2014 		 1.32 		 0
-2015 		 1.29 		 0
-2016 		 1.34 		 0
-2017 		 1.37 		 1
-2018 		 1.36 		 0
-
-SEED 2
-YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.42 		 0
-2012 		 1.34 		 0
-2013 		 1.33 		 1
-2014 		 1.24 		 0
-2015 		 1.26 		 0
-2016 		 1.34 		 0
-2017 		 1.33 		 3
-2018 		 1.29 		 0
-
-SEED 3
-YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.45 		 2
-2012 		 1.38 		 1
-2013 		 1.45 		 0
-2014 		 1.29 		 3
-2015 		 1.29 		 2
-2016 		 1.37 		 0
-2017 		 1.36 		 6
-2018 		 1.38 		 0
-
-SEED 4
-YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.48 		 0
-2012 		 1.4 		 0
-2013 		 1.43 		 0
-2014 		 1.34 		 1
-2015 		 1.34 		 0
-2016 		 1.38 		 0
-2017 		 1.4 		 3
-2018 		 1.38 		 0
-
-SEED 5
-YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.18 		 3
-2012 		 1.07 		 7
-2013 		 1.12 		 6
-2014 		 1.02 		 6
-2015 		 1.02 		 5
-2016 		 1.13 		 3
-2017 		 1.1 		 10
-2018 		 1.08 		 5
-
-SEED 6
-YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.12 		 0
-2012 		 1.13 		 0
-2013 		 1.13 		 0
-2014 		 1.09 		 0
-2015 		 1.07 		 0
-2016 		 1.09 		 0
-2017 		 1.07 		 2
-2018 		 1.09 		 0
-
-
-CONCLUSIONS:
-LR=0.0005 seems like a good compromise for LR.
-
-DISCUSSION:
-
+More analysis required. Revert back to EPSILON =0.9, LR=1E-4 during last phase
 **************************************************************

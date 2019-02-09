@@ -823,9 +823,7 @@ YEAR		AVG_RWD		VIOLATIONS
 
 
 CONCLUSIONS:
-
-
-
+TANH Activation are also quite good.
 DISCUSSION:
 
 **************************************************************
