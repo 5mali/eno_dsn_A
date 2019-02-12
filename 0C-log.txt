@@ -91,7 +91,7 @@ C(RELU)
 |                                 |
 |--C4(Ka-Ka-Xa)->C4A(LR=0.0001)->C4B-x->0C0 (No change during last phase)
                                   |     |
-                                  x     x                               
+                                  #     #                               
                                   |     |
                                   |     |-->OC3(DEPTH=3)->0C3A(Disruptive Training)--!!!
                                   |     |
@@ -222,95 +222,94 @@ TESTING:    TOKYO[2010-2018]
    
 
 RESULTS:
+#probably the best results so far
 SEED 0
-#something is very wrong here. Analyze this.
-#except for seed0, performance seems to be more robust
 TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
 YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.18 		 9
-2012 		 -4.36 		 222
-2013 		 1.21 		 5
-2014 		 0.15 		 48
-2015 		 -1.65 		 116
-2016 		 0.32 		 40
-2017 		 -0.66 		 80
-2018 		 1.14 		 9
+2011 		 1.42 		 0
+2012 		 1.33 		 2
+2013 		 1.36 		 1
+2014 		 1.31 		 1
+2015 		 1.31 		 0
+2016 		 1.35 		 1
+2017 		 1.39 		 1
+2018 		 1.34 		 0
 TESTING BASED ON VIOLATION COUNTER METRIC
 YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.18 		 9
-2012 		 -4.36 		 222
-2013 		 1.21 		 5
-2014 		 0.15 		 48
-2015 		 -1.65 		 116
-2016 		 0.32 		 40
-2017 		 -0.66 		 80
-2018 		 1.14 		 9
+2011 		 1.42 		 0
+2012 		 1.33 		 2
+2013 		 1.36 		 1
+2014 		 1.31 		 1
+2015 		 1.31 		 0
+2016 		 1.35 		 1
+2017 		 1.39 		 1
+2018 		 1.34 		 0
 
 SEED 1
 TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
 YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.39 		 0
-2012 		 1.27 		 3
-2013 		 1.38 		 0
+2011 		 1.4 		 0
+2012 		 1.34 		 0
+2013 		 1.39 		 0
 2014 		 1.28 		 0
-2015 		 1.2 		 2
-2016 		 1.28 		 0
-2017 		 1.26 		 6
-2018 		 1.3 		 0
+2015 		 1.26 		 0
+2016 		 1.3 		 0
+2017 		 1.35 		 2
+2018 		 1.33 		 0
 TESTING BASED ON VIOLATION COUNTER METRIC
 YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.39 		 0
-2012 		 1.27 		 3
-2013 		 1.38 		 0
+2011 		 1.4 		 0
+2012 		 1.34 		 0
+2013 		 1.39 		 0
 2014 		 1.28 		 0
-2015 		 1.2 		 2
-2016 		 1.28 		 0
-2017 		 1.26 		 6
-2018 		 1.3 		 0
+2015 		 1.26 		 0
+2016 		 1.3 		 0
+2017 		 1.35 		 2
+2018 		 1.33 		 0
 
 SEED 2
 TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
 YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.53 		 1
-2012 		 1.44 		 2
-2013 		 1.48 		 1
-2014 		 1.4 		 0
-2015 		 1.38 		 1
-2016 		 1.41 		 3
-2017 		 1.45 		 3
-2018 		 1.44 		 1
+2011 		 1.47 		 0
+2012 		 1.4 		 0
+2013 		 1.46 		 0
+2014 		 1.35 		 0
+2015 		 1.3 		 0
+2016 		 1.36 		 0
+2017 		 1.39 		 3
+2018 		 1.39 		 0
 TESTING BASED ON VIOLATION COUNTER METRIC
 YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.53 		 1
-2012 		 1.44 		 2
-2013 		 1.48 		 1
-2014 		 1.4 		 0
-2015 		 1.38 		 1
-2016 		 1.41 		 3
-2017 		 1.45 		 3
-2018 		 1.44 		 1
+2011 		 1.47 		 0
+2012 		 1.4 		 0
+2013 		 1.46 		 0
+2014 		 1.35 		 0
+2015 		 1.3 		 0
+2016 		 1.36 		 0
+2017 		 1.39 		 3
+2018 		 1.39 		 0
 
 SEED 3
 TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
 YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.56 		 0
-2012 		 1.48 		 0
-2013 		 1.51 		 0
-2014 		 1.44 		 0
-2015 		 1.42 		 0
-2016 		 1.47 		 0
-2017 		 1.53 		 0
-2018 		 1.46 		 0
+2011 		 1.44 		 0
+2012 		 1.37 		 0
+2013 		 1.4 		 0
+2014 		 1.31 		 1
+2015 		 1.27 		 0
+2016 		 1.34 		 0
+2017 		 1.4 		 2
+2018 		 1.34 		 0
 TESTING BASED ON VIOLATION COUNTER METRIC
 YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.56 		 0
-2012 		 1.48 		 0
-2013 		 1.51 		 0
-2014 		 1.44 		 0
-2015 		 1.42 		 0
-2016 		 1.47 		 0
-2017 		 1.53 		 0
-2018 		 1.46 		 0
+2011 		 1.44 		 0
+2012 		 1.37 		 0
+2013 		 1.4 		 0
+2014 		 1.31 		 1
+2015 		 1.27 		 0
+2016 		 1.34 		 0
+2017 		 1.4 		 2
+2018 		 1.34 		 0
 
 
 
@@ -387,94 +386,94 @@ RESULTS:
 SEED 0
 TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
 YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.43 		 0
-2012 		 1.38 		 0
-2013 		 1.4 		 0
-2014 		 1.33 		 0
-2015 		 1.36 		 0
-2016 		 1.38 		 0
-2017 		 1.42 		 0
-2018 		 1.36 		 0
+2011 		 1.45 		 0
+2012 		 1.4 		 0
+2013 		 1.44 		 0
+2014 		 1.37 		 0
+2015 		 1.37 		 0
+2016 		 1.39 		 0
+2017 		 1.44 		 0
+2018 		 1.38 		 0
 TESTING BASED ON VIOLATION COUNTER METRIC
 YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.43 		 0
-2012 		 1.38 		 0
-2013 		 1.4 		 0
-2014 		 1.33 		 0
-2015 		 1.36 		 0
-2016 		 1.38 		 0
-2017 		 1.42 		 0
-2018 		 1.36 		 0
+2011 		 1.45 		 0
+2012 		 1.4 		 0
+2013 		 1.44 		 0
+2014 		 1.37 		 0
+2015 		 1.37 		 0
+2016 		 1.39 		 0
+2017 		 1.44 		 0
+2018 		 1.38 		 0
 
 SEED 1
 TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
 YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.5 		 0
-2012 		 1.4 		 2
-2013 		 1.49 		 0
-2014 		 1.4 		 0
-2015 		 1.36 		 4
-2016 		 1.47 		 1
-2017 		 1.48 		 1
-2018 		 1.47 		 0
+2011 		 1.52 		 0
+2012 		 1.44 		 0
+2013 		 1.47 		 0
+2014 		 1.42 		 0
+2015 		 1.42 		 0
+2016 		 1.47 		 0
+2017 		 1.5 		 0
+2018 		 1.45 		 0
 TESTING BASED ON VIOLATION COUNTER METRIC
 YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.5 		 0
-2012 		 1.4 		 2
-2013 		 1.49 		 0
-2014 		 1.4 		 0
-2015 		 1.36 		 4
-2016 		 1.47 		 1
-2017 		 1.48 		 1
-2018 		 1.47 		 0
+2011 		 1.52 		 0
+2012 		 1.44 		 0
+2013 		 1.47 		 0
+2014 		 1.42 		 0
+2015 		 1.42 		 0
+2016 		 1.47 		 0
+2017 		 1.5 		 0
+2018 		 1.45 		 0
 
 SEED 2
 TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
 YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.34 		 1
-2012 		 1.32 		 0
-2013 		 1.35 		 0
-2014 		 1.21 		 2
-2015 		 1.28 		 0
-2016 		 1.29 		 2
-2017 		 1.23 		 6
-2018 		 1.29 		 1
+2011 		 1.48 		 0
+2012 		 1.41 		 0
+2013 		 1.45 		 0
+2014 		 1.37 		 0
+2015 		 1.34 		 0
+2016 		 1.39 		 0
+2017 		 1.37 		 4
+2018 		 1.4 		 0
 TESTING BASED ON VIOLATION COUNTER METRIC
 YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.34 		 1
-2012 		 1.32 		 0
-2013 		 1.35 		 0
-2014 		 1.21 		 2
-2015 		 1.28 		 0
-2016 		 1.29 		 2
-2017 		 1.23 		 6
-2018 		 1.29 		 1
+2011 		 1.48 		 0
+2012 		 1.41 		 0
+2013 		 1.45 		 0
+2014 		 1.37 		 0
+2015 		 1.34 		 0
+2016 		 1.39 		 0
+2017 		 1.37 		 4
+2018 		 1.4 		 0
 
 SEED 3
 TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
 YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.46 		 1
-2012 		 1.33 		 3
-2013 		 1.43 		 0
-2014 		 1.25 		 5
-2015 		 1.3 		 2
-2016 		 1.36 		 2
-2017 		 1.35 		 6
-2018 		 1.38 		 0
+2011 		 1.29 		 5
+2012 		 1.17 		 10
+2013 		 1.12 		 17
+2014 		 0.93 		 25
+2015 		 1.18 		 6
+2016 		 1.26 		 5
+2017 		 1.15 		 17
+2018 		 1.16 		 10
 TESTING BASED ON VIOLATION COUNTER METRIC
 YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.46 		 1
-2012 		 1.33 		 3
-2013 		 1.43 		 0
-2014 		 1.25 		 5
-2015 		 1.3 		 2
-2016 		 1.36 		 2
-2017 		 1.35 		 6
-2018 		 1.38 		 0
+2011 		 1.29 		 5
+2012 		 1.17 		 10
+2013 		 1.12 		 17
+2014 		 0.93 		 25
+2015 		 1.18 		 6
+2016 		 1.26 		 5
+2017 		 1.15 		 17
+2018 		 1.16 		 10
 
 
 CONCLUSIONS:
-Disruptive learning improves performance
+Disruptive learning improves performance. However, as in case of Seed 3, maybe the episodes of disruptions must be reduced.
 
 DISCUSSION:
 **************************************************************
@@ -488,9 +487,10 @@ C(RELU)
 |--C3(Xa-Ka-Ka)--X   
 |              
 |--C4(Ka-Ka-Xa)->C4A(LR=0.0001)->C4B-->0C0 (No change during last phase)->0C3
-                                  |     |-->OC2 (WIDTH=50)
+                                  |     |
+                                  |     |-->OC2 (WIDTH=50)->XX
                                   |
-                                  |--->0C--------------XX
+                                  |--->0C--------------OK
                                        |
                                        0C1(WIDTH=50) --XX
 
@@ -540,90 +540,90 @@ RESULTS:
 SEED 0
 TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
 YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.31 		 0
-2012 		 1.28 		 0
-2013 		 1.3 		 0
-2014 		 1.21 		 1
-2015 		 1.23 		 0
-2016 		 1.25 		 1
-2017 		 1.32 		 0
-2018 		 1.21 		 3
+2011 		 1.27 		 1
+2012 		 1.24 		 1
+2013 		 1.25 		 2
+2014 		 1.15 		 4
+2015 		 1.15 		 1
+2016 		 1.19 		 1
+2017 		 1.25 		 2
+2018 		 1.18 		 2
 TESTING BASED ON VIOLATION COUNTER METRIC
 YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.31 		 0
-2012 		 1.28 		 0
-2013 		 1.3 		 0
-2014 		 1.21 		 1
-2015 		 1.23 		 0
-2016 		 1.25 		 1
-2017 		 1.32 		 0
-2018 		 1.21 		 3
+2011 		 1.27 		 1
+2012 		 1.24 		 1
+2013 		 1.25 		 2
+2014 		 1.15 		 4
+2015 		 1.15 		 1
+2016 		 1.19 		 1
+2017 		 1.25 		 2
+2018 		 1.18 		 2
 
 SEED 1
 TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
 YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.33 		 1
-2012 		 1.3 		 1
-2013 		 1.32 		 0
-2014 		 1.24 		 0
-2015 		 1.23 		 0
-2016 		 1.25 		 1
-2017 		 -0.59 		 78
-2018 		 1.26 		 0
+2011 		 1.41 		 0
+2012 		 1.37 		 0
+2013 		 1.38 		 0
+2014 		 1.29 		 0
+2015 		 1.26 		 0
+2016 		 1.32 		 0
+2017 		 1.37 		 2
+2018 		 1.32 		 0
 TESTING BASED ON VIOLATION COUNTER METRIC
 YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.33 		 1
-2012 		 1.3 		 1
-2013 		 1.32 		 0
-2014 		 1.24 		 0
-2015 		 1.23 		 0
-2016 		 1.25 		 1
-2017 		 -0.59 		 78
-2018 		 1.26 		 0
+2011 		 1.41 		 0
+2012 		 1.37 		 0
+2013 		 1.38 		 0
+2014 		 1.29 		 0
+2015 		 1.26 		 0
+2016 		 1.32 		 0
+2017 		 1.37 		 2
+2018 		 1.32 		 0
 
 SEED 2
 TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
 YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.33 		 3
-2012 		 1.29 		 4
-2013 		 1.26 		 7
-2014 		 1.16 		 11
-2015 		 1.25 		 5
-2016 		 1.28 		 3
-2017 		 1.29 		 6
-2018 		 1.26 		 3
+2011 		 1.53 		 0
+2012 		 1.48 		 0
+2013 		 1.53 		 0
+2014 		 1.42 		 0
+2015 		 1.42 		 0
+2016 		 1.46 		 0
+2017 		 1.5 		 0
+2018 		 1.47 		 0
 TESTING BASED ON VIOLATION COUNTER METRIC
 YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.33 		 3
-2012 		 1.29 		 4
-2013 		 1.26 		 7
-2014 		 1.16 		 11
-2015 		 1.25 		 5
-2016 		 1.28 		 3
-2017 		 1.29 		 6
-2018 		 1.26 		 3
+2011 		 1.53 		 0
+2012 		 1.48 		 0
+2013 		 1.53 		 0
+2014 		 1.42 		 0
+2015 		 1.42 		 0
+2016 		 1.46 		 0
+2017 		 1.5 		 0
+2018 		 1.47 		 0
 
 SEED 3
 TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
 YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.51 		 0
-2012 		 1.48 		 0
-2013 		 1.5 		 0
-2014 		 1.43 		 0
-2015 		 1.42 		 0
-2016 		 1.43 		 0
-2017 		 1.48 		 0
-2018 		 1.44 		 0
+2011 		 1.29 		 8
+2012 		 1.18 		 9
+2013 		 1.2 		 13
+2014 		 0.97 		 22
+2015 		 1.14 		 11
+2016 		 1.17 		 13
+2017 		 1.22 		 11
+2018 		 1.13 		 14
 TESTING BASED ON VIOLATION COUNTER METRIC
 YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.51 		 0
-2012 		 1.48 		 0
-2013 		 1.5 		 0
-2014 		 1.43 		 0
-2015 		 1.42 		 0
-2016 		 1.43 		 0
-2017 		 1.48 		 0
-2018 		 1.44 		 0
+2011 		 1.29 		 8
+2012 		 1.18 		 9
+2013 		 1.2 		 13
+2014 		 0.97 		 22
+2015 		 1.14 		 11
+2016 		 1.17 		 13
+2017 		 1.22 		 11
+2018 		 1.13 		 14
 
 
 CONCLUSIONS:
@@ -644,7 +644,7 @@ C(RELU)
 |              
 |--C4(Ka-Ka-Xa)->C4A(LR=0.0001)->C4B-->0C0 (No change during last phase)-->OC2
                                   |
-                                  |--->0C--------------XX
+                                  |--->0C--------------OK
                                        |
                                        0C1(WIDTH=50) --XX
 
@@ -693,24 +693,24 @@ RESULTS:
 SEED 0
 TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
 YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.19 		 10
-2012 		 -0.12 		 60
-2013 		 -1.03 		 96
-2014 		 -0.44 		 70
-2015 		 -0.42 		 72
-2016 		 -1.77 		 124
-2017 		 -1.3 		 108
-2018 		 -2.35 		 146
+2011 		 1.41 		 0
+2012 		 1.37 		 0
+2013 		 1.42 		 0
+2014 		 1.32 		 0
+2015 		 1.31 		 0
+2016 		 1.37 		 0
+2017 		 1.41 		 0
+2018 		 1.36 		 0
 TESTING BASED ON VIOLATION COUNTER METRIC
 YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.19 		 10
-2012 		 -0.12 		 60
-2013 		 -1.03 		 96
-2014 		 -0.44 		 70
-2015 		 -0.42 		 72
-2016 		 -1.77 		 124
-2017 		 -1.3 		 108
-2018 		 -2.35 		 146
+2011 		 1.41 		 0
+2012 		 1.37 		 0
+2013 		 1.42 		 0
+2014 		 1.32 		 0
+2015 		 1.31 		 0
+2016 		 1.37 		 0
+2017 		 1.41 		 0
+2018 		 1.36 		 0
 
 SEED 1
 TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
@@ -737,50 +737,49 @@ YEAR		AVG_RWD		VIOLATIONS
 SEED 2
 TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
 YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.53 		 0
-2012 		 1.46 		 0
-2013 		 1.51 		 0
-2014 		 1.43 		 0
-2015 		 1.42 		 0
-2016 		 1.46 		 0
-2017 		 1.49 		 0
-2018 		 1.46 		 0
+2011 		 0.89 		 27
+2012 		 0.81 		 27
+2013 		 0.91 		 22
+2014 		 0.72 		 35
+2015 		 0.92 		 17
+2016 		 1.03 		 17
+2017 		 0.98 		 24
+2018 		 0.88 		 21
 TESTING BASED ON VIOLATION COUNTER METRIC
 YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.53 		 0
-2012 		 1.46 		 0
-2013 		 1.51 		 0
-2014 		 1.43 		 0
-2015 		 1.42 		 0
-2016 		 1.46 		 0
-2017 		 1.49 		 0
-2018 		 1.46 		 0
+2011 		 0.89 		 27
+2012 		 0.81 		 27
+2013 		 0.91 		 22
+2014 		 0.72 		 35
+2015 		 0.92 		 17
+2016 		 1.03 		 17
+2017 		 0.98 		 24
+2018 		 0.88 		 21
 
 SEED 3
 TESTING BEST MODEL BASED ON AVERAGE REWARD METRIC
 YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.57 		 0
-2012 		 1.5 		 0
-2013 		 1.53 		 0
-2014 		 1.46 		 0
-2015 		 1.45 		 0
-2016 		 1.5 		 0
-2017 		 -0.41 		 76
-2018 		 1.5 		 0
+2011 		 1.49 		 0
+2012 		 1.44 		 0
+2013 		 1.47 		 0
+2014 		 1.37 		 0
+2015 		 1.36 		 0
+2016 		 1.39 		 0
+2017 		 1.38 		 4
+2018 		 1.4 		 0
 TESTING BASED ON VIOLATION COUNTER METRIC
 YEAR		AVG_RWD		VIOLATIONS
-2011 		 1.57 		 0
-2012 		 1.5 		 0
-2013 		 1.53 		 0
-2014 		 1.46 		 0
-2015 		 1.45 		 0
-2016 		 1.5 		 0
-2017 		 -0.41 		 76
-2018 		 1.5 		 0
+2011 		 1.49 		 0
+2012 		 1.44 		 0
+2013 		 1.47 		 0
+2014 		 1.37 		 0
+2015 		 1.36 		 0
+2016 		 1.39 		 0
+2017 		 1.38 		 4
+2018 		 1.4 		 0
 
 
 CONCLUSIONS:
-When it works, it works really really good. But when it does not, it works very bad.
 
 Maybe due to lack of training for bad days.
 
